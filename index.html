@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propose Day | For My Bayko 💖</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+  body{
+    background: radial-gradient(circle at top,#ffdde1,#ee9ca7);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    overflow:hidden;
+  }
+  h1{
+    color:#fff;
+    font-size:2.2em;
+    text-shadow:0 0 8px #ff007f, 0 0 20px #ff007f;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow{
+    from{ text-shadow:0 0 8px #ff007f,0 0 20px #ff007f; }
+    to{ text-shadow:0 0 16px #ff007f,0 0 32px #ff66b3; }
+  }
+  .heart{
+    position:absolute;
+    color:#ff2d95;
+    font-size:22px;
+    animation: float 5s linear infinite;
+  }
+  @keyframes float{
+    0%{ transform:translateY(0) scale(1); opacity:1;}
+    100%{ transform:translateY(-700px) scale(0.6); opacity:0;}
+  }
+  .container{
+    background:rgba(255,255,255,0.15);
+    border:2px solid rgba(255,255,255,0.3);
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+    width:90%;
+    max-width:420px;
+    padding:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    margin-top:20px;
+  }
+  p{
+    color:#fff;
+    font-size:1em;
+    margin:10px 0;
+  }
+  button{
+    margin:8px;
+    padding:10px 18px;
+    border:none;
+    border-radius:25px;
+    font-weight:600;
+    background:linear-gradient(90deg,#ff007f,#ff66b3);
+    color:#fff;
+    box-shadow:0 0 10px #ff007f;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #ff66b3;
+  }
+  .shayri{
+    margin-top:16px;
+    background:rgba(255,255,255,0.2);
+    padding:16px;
+    border-radius:12px;
+    color:#fff;
+    font-weight:500;
+    font-size:1em;
+    text-shadow:0 0 10px #ff007f;
+    line-height:1.4;
+  }
+  #final{
+    display:none;
+    color:#fff;
+    margin-top:16px;
+    font-size:1.4em;
+    font-weight:600;
+    text-shadow:0 0 12px #ff007f;
+  }
+  /* neon border animation */
+  .container::before{
+    content:"";
+    position:absolute;
+    top:-2px;left:-2px;right:-2px;bottom:-2px;
+    background:linear-gradient(60deg,#ff007f,#ff66b3,#ff0000,#ff6b81);
+    background-size:300% 300%;
+    z-index:-1;
+    border-radius:22px;
+    animation:borderGlow 4s linear infinite;
+  }
+  @keyframes borderGlow{
+    0%{background-position:0 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0 50%;}
+  }
+</style>
+</head>
+<body>
+ <audio id="bgMusic" src="song.mp3" autoplay loop hidden></audio>
+
+
+<h1>💖 Happy Propose Day 💖</h1>
+
+<div class="container">
+  <p>Hey <b>Bayko</b> 😍</p>
+  <p>I have a few little questions for you… 💫</p>
+
+  <p>1️⃣ Do you remember our first smile together? 😊</p>
+  <p>2️⃣ Do you feel the same spark even today? ✨</p>
+  <p>3️⃣ If yes… then tell me honestly👇</p>
+
+  <button onclick="showFinal()">Will You Be Mine Forever? 💍</button>
+
+  <div class="shayri" id="shayri">
+    💞  💞<br><br>
+    "तू आहेस माझ्या श्वासांची ओळ,  
+    तूच माझं स्वप्न, तूच माझं goal.  
+    हर पल सोचूं बस तुझी याद,  
+    I love you, my sweet Bayko — forever & beyond! 💖"
+  </div>
+
+  <div id="final">💐 Yes or No doesn’t matter,  
+    but my heart will always say – *I Love You Bayko!* 💞</div>
+</div>
+<script>
+  document.addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) {
+      music.play().catch(()=>{});
+    }
+  });
+</script>
+<script>
+  // floating hearts animation
+  function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '💖💖💖💖';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (3+Math.random()*3)+'s';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+  }
+  setInterval(createHeart,500);
+
+  function showFinal(){
+    document.getElementById("final").style.display="block";
+    const btns=document.querySelectorAll("button");
+    btns.forEach(b=>b.style.display="none");
+    let shayri=document.getElementById("shayri");
+    shayri.innerHTML=`"तू माझं जग आहेस Bayko 💖<br>
+    You are my reason to smile every day.<br>
+    हर दुआ में बस तू ही तू है —<br>
+    Will you walk with me forever?"`;
+    confetti();
+  }
+
+  // simple confetti
+  function confetti(){
+    for(let i=0;i<30;i++){
+      const c=document.createElement('div');
+      c.style.position='fixed';
+      c.style.width='10px';c.style.height='10px';
+      c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+      c.style.top='50%';
+      c.style.left='50%';
+      c.style.borderRadius='50%';
+      c.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+      c.style.transition='all 1.2s ease-out';
+      document.body.appendChild(c);
+      setTimeout(()=>{c.style.opacity='0';},50);
+      setTimeout(()=>c.remove(),1300);
+    }
+  }
+</script>
+
+</body>
+</html>
